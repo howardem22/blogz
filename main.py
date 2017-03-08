@@ -20,7 +20,7 @@ class BlogHandler(webapp2.RequestHandler):
             The user parameter will be a User object.
         """
         # TODO - filter the query so that only posts by the given user
-        query = Post.all().filter("author", self.user).order('-created')
+        query = Post.all().filter("author", user).order('-created')
         return query.fetch(limit=limit, offset=offset)
 
     def get_user_by_name(self, username):
@@ -153,6 +153,7 @@ class ViewPostHandler(BlogHandler):
         """ Render a page with post determined by the id (via the URL/permalink) """
 
         post = Post.get_by_id(int(id))
+
         if post:
             t = jinja_env.get_template("post.html")
             response = t.render(post=post)

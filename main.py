@@ -76,7 +76,7 @@ class BlogIndexHandler(BlogHandler):
 
     def get(self, username=""):
         """ """
-
+        
         # If request is for a specific page, set page number and offset accordingly
         page = self.request.get("page")
         offset = 0
